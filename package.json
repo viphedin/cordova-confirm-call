@@ -2,10 +2,15 @@
   "name": "cordova-confirm-call",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "homepage": "https://github.com/viphedin/cordova-confirm-call#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viphedin/cordova-confirm-call.git"
+  },
+  "main": "bump-version.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Kostya",
+  "author": "Kostya Bulaev",
   "license": "ISC"
 }

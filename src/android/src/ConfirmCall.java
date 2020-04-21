@@ -22,8 +22,6 @@ public class ConfirmCall extends CordovaPlugin {
 
         this.cordova = cordova;
         mContext = cordova.getActivity().getApplicationContext();
-
-        livetexContext = new LivetexContext(mContext);
     }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
