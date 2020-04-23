@@ -20,10 +20,17 @@
     <framework src="src/android/confirm-call.gradle" custom="true" type="gradleReference" />
 
     <source-file src="src/android/src/ConfirmCall.java" target-dir="src/ru/simdev/confirm/call" />
+    <source-file src="src/android/src/ConfirmCallStateListener.java" target-dir="src/ru/simdev/confirm/call" />
+    <source-file src="src/android/src/ITelephony.java" target-dir="src/ru/simdev/confirm/call" />
  
     <js-module src="www/cordova-confirm-call.js" name="confirmCall">
       <merges target="cordova.plugins.confirm-call" />
     </js-module>
-  </platform>
 
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.CALL_PHONE" />
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    </config-file>
+  </platform>
 </plugin>
