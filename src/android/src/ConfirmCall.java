@@ -78,8 +78,10 @@ public class ConfirmCall extends CordovaPlugin {
         this.token = token;
 
         try {
+            checkPermissions();
+
             phoneListener.setCompareNumber(phoneNumber);
-            TelephonyManager telephony = (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephony = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
             Log.d(TAG, "set listen " + phoneNumber);
         } catch (Exception e) {
@@ -89,24 +91,20 @@ public class ConfirmCall extends CordovaPlugin {
 
     public void stop(final CallbackContext callbackContext) {
         try {
-            TelephonyManager telephony = (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephony = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             telephony.listen(phoneListener, PhoneStateListener.LISTEN_NONE);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
-
     }
+
     private void checkPermissions() {
-        if (!checkPermission(Manifest.permission.READ_PHONE_STATE)) {
-            ActivityCompat.requestPermissions(cordova.getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, 0);
-        }
-
-        if (!checkPermission(Manifest.permission.READ_CALL_LOG)) {
-            ActivityCompat.requestPermissions(cordova.getActivity(), new String[]{Manifest.permission.READ_CALL_LOG}, 0);
-        }
-
-        if (!checkPermission(Manifest.permission.ANSWER_PHONE_CALLS)) {
-            ActivityCompat.requestPermissions(cordova.getActivity(), new String[]{Manifest.permission.ANSWER_PHONE_CALLS}, 0);
+        if (!checkPermission(Manifest.permission.READ_CALL_LOG) || !checkPermission(Manifest.permission.ANSWER_PHONE_CALLS)) {
+            ActivityCompat.requestPermissions(cordova.getActivity(), new String[] {
+                    Manifest.permission.READ_CALL_LOG,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.ANSWER_PHONE_CALLS
+                }, 0);
         }
     }
 
