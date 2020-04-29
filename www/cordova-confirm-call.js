@@ -9,4 +9,14 @@ module.exports =
             [phoneNumber, targetUrl, token]
         );
     },
+    
+    stop: function (successCallback, errorCallback) {
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            "ConfirmCall",
+            "stop",
+            []
+        );
+    },
 };
